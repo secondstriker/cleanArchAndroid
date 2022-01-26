@@ -14,6 +14,11 @@ class DependenciesPlugin : Plugin<Project> {
         const val CompileSdk = 31
         const val MinSdk = 21
 
+        const val ModuleCommon = ":common"
+        const val ModuleData = ":data"
+        const val ModuleDomain = ":domain"
+        const val ModulePresentation = ":presentation"
+
         const val AndroidxCore = "androidx.core:core-ktx:1.6.0"
         const val AndroidxAppCompat = "androidx.appcompat:appcompat:1.3.1"
         const val AndroidxJUnit = "androidx.test.ext:junit:1.1.3"
