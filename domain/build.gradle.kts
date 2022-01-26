@@ -50,4 +50,9 @@ dependencies {
     androidTestImplementation(DependenciesPlugin.HiltAndroidTesting)
     kaptAndroidTest(DependenciesPlugin.HiltAndroidCompiler)
 
+    implementation(DependenciesPlugin.Moshi)
+    implementation(DependenciesPlugin.MoshiCodeGenerator)
+    implementation(DependenciesPlugin.RetrofitMoshiConverter)
+    implementation(DependenciesPlugin.MoshiKotlin)
+
 }
