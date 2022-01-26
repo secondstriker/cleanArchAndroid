@@ -30,6 +30,7 @@ android {
 dependencies {
 
     implementation(DependenciesPlugin.AndroidxCore)
+    implementation(project(mapOf("path" to DependenciesPlugin.ModuleCommon)))
     androidTestImplementation(DependenciesPlugin.AndroidxJUnit)
     androidTestImplementation(DependenciesPlugin.AndroidxEspresso)
 

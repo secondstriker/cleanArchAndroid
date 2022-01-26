@@ -1,12 +1,12 @@
 import com.codewithmohsen.gradle.DependenciesPlugin
 
-        plugins {
-            id("com.android.application")
-            id("kotlin-kapt")
-            id("kotlin-android")
-            id("com.codewithmohsen.dependencies")
-            id("dagger.hilt.android.plugin")
-        }
+plugins {
+    id("com.android.application")
+    id("kotlin-kapt")
+    id("kotlin-android")
+    id("com.codewithmohsen.dependencies")
+    id("dagger.hilt.android.plugin")
+}
 
 android {
     compileSdk = DependenciesPlugin.CompileSdk
@@ -41,8 +41,6 @@ android {
 }
 
 dependencies {
-    implementation(project(DependenciesPlugin.ModuleCommon))
-
     implementation(DependenciesPlugin.AndroidxCore)
     implementation(DependenciesPlugin.Material)
     implementation(DependenciesPlugin.AndroidxAppCompat)

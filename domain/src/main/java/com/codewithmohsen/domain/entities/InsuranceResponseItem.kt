@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class DomainResponseItem(
+data class InsuranceResponseItem(
     @Json(name = "branchNumber")
     val branchNumber: Int?,
     @Json(name = "complaintResponseTime")
