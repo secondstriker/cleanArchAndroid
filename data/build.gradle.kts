@@ -60,4 +60,8 @@ dependencies {
     kaptAndroidTest(DependenciesPlugin.HiltAndroidCompiler)
 
     implementation(DependenciesPlugin.MultiDexApplication)
+
+    implementation(DependenciesPlugin.Retrofit)
+    implementation(DependenciesPlugin.RetrofitMoshiConverter)
+    implementation(DependenciesPlugin.OkhttpInterceptor)
 }

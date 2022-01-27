@@ -1,4 +1,4 @@
-package com.codewithmohsen.common.network
+package com.codewithmohsen.domain.network
 
 sealed class APIErrorResponse<E> {
 

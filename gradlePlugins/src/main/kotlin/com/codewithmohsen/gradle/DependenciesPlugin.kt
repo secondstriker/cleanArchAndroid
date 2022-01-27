@@ -62,6 +62,7 @@ class DependenciesPlugin : Plugin<Project> {
         const val PreferencesKotlin = "androidx.preference:preference-ktx:1.1.1"
         const val PreferencesJava =  "androidx.preference:preference:1.1.1"
 
+        const val Dagger = "com.google.dagger:dagger:2.38.1"
         const val HiltAndroid = "com.google.dagger:hilt-android:2.38.1"
         const val HiltCompiler = "com.google.dagger:hilt-compiler:2.38.1"
         const val HiltAndroidTesting = "com.google.dagger:hilt-android-testing:2.38.1"

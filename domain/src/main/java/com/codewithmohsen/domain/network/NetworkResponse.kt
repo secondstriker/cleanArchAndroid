@@ -1,8 +1,8 @@
-package com.codewithmohsen.common.network
+package com.codewithmohsen.domain.network
 
-import java.io.IOException
+import com.codewithmohsen.domain.entities.ErrorEntity
 
-sealed class NetworkResponse<out T: Any, out E: APIErrorResponse<ErrorModel>> {
+sealed class NetworkResponse<out T: Any, out E: APIErrorResponse<ErrorEntity>> {
 
     /**
      * Success response with body
@@ -17,12 +17,12 @@ sealed class NetworkResponse<out T: Any, out E: APIErrorResponse<ErrorModel>> {
     /**
      * Failure response, API error
      */
-    data class APIError<E: APIErrorResponse<ErrorModel>>(val apiErrorResponse: E) : NetworkResponse<Nothing, E>()
+    data class APIError<E: APIErrorResponse<ErrorEntity>>(val apiErrorResponse: E) : NetworkResponse<Nothing, E>()
 
     /**
      * Network error
      */
-    data class NetworkError(val exception: IOException) : NetworkResponse<Nothing, Nothing>()
+    data class NetworkError(val exceptionMessage: String) : NetworkResponse<Nothing, Nothing>()
 
     /**
      * For example, json parsing error

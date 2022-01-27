@@ -1,7 +1,7 @@
 package com.codewithmohsen.domain.repository
 
-import com.codewithmohsen.common.Resource
-import com.codewithmohsen.domain.entities.InsuranceResponseItem
+import com.codewithmohsen.domain.Resource
+import com.codewithmohsen.domain.entities.domain_entities.InsuranceResponseItem
 import kotlinx.coroutines.flow.Flow
 
 

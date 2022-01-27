@@ -1,4 +1,4 @@
-package com.codewithmohsen.domain.entities
+package com.codewithmohsen.domain.entities.domain_entities
 
 
 import com.squareup.moshi.Json

@@ -1,7 +1,7 @@
 package com.codewithmohsen.domain.use_case
 
-import com.codewithmohsen.common.Resource
-import com.codewithmohsen.domain.entities.InsuranceResponseItem
+import com.codewithmohsen.domain.Resource
+import com.codewithmohsen.domain.entities.domain_entities.InsuranceResponseItem
 import com.codewithmohsen.domain.repository.InsurancesRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
