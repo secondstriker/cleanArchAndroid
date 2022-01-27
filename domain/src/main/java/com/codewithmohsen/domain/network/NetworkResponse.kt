@@ -22,7 +22,7 @@ sealed class NetworkResponse<out T: Any, out E: APIErrorResponse<ErrorEntity>> {
     /**
      * Network error
      */
-    data class NetworkError(val exceptionMessage: String) : NetworkResponse<Nothing, Nothing>()
+    data class NetworkError(val exceptionMessage: String?) : NetworkResponse<Nothing, Nothing>()
 
     /**
      * For example, json parsing error
