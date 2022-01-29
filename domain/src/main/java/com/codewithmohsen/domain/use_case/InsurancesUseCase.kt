@@ -11,8 +11,10 @@ class InsurancesUseCase @Inject constructor(
     private val insurancesRepository: InsurancesRepository
 ) {
 
-    suspend operator fun invoke(): Flow<ResourceEntity<List<InsuranceResponseItem>>> {
-        return insurancesRepository.getAllInsurances()
-    }
+    suspend operator fun invoke() =
+        insurancesRepository.getAllInsurances()
+
+    suspend fun fetch() = insurancesRepository.fetchAllInsurances()
+
 
 }

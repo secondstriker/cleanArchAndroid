@@ -1,4 +1,4 @@
-package com.codewithmohsen.data
+package com.codewithmohsen.commonandroid
 
 import com.codewithmohsen.common.logger.Logger
 import timber.log.Timber

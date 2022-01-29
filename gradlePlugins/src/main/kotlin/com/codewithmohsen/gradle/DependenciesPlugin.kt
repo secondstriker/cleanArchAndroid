@@ -15,6 +15,7 @@ class DependenciesPlugin : Plugin<Project> {
         const val MinSdk = 21
 
         const val ModuleCommon = ":common"
+        const val ModuleCommonAndroid = ":commonandroid"
         const val ModuleData = ":data"
         const val ModuleDomain = ":domain"
         const val ModuleRemote = ":remote"

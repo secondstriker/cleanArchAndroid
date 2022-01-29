@@ -1,7 +1,7 @@
-package com.codewithmohsen.data.di
+package com.codewithmohsen.commonandroid.di
 
 import com.codewithmohsen.common.logger.Logger
-import com.codewithmohsen.data.LoggerImpl
+import com.codewithmohsen.commonandroid.LoggerImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.codewithmohsen.data.di
+package com.codewithmohsen.commonandroid.di
 
 import com.codewithmohsen.domain.di.DefaultDispatcher
 import com.codewithmohsen.domain.di.IoDispatcher

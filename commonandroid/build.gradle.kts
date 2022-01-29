@@ -36,15 +36,9 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to DependenciesPlugin.ModuleCommonAndroid)))
     implementation(project(mapOf("path" to DependenciesPlugin.ModuleDomain)))
-    implementation(project(mapOf("path" to DependenciesPlugin.ModuleRemote)))
-
-
-    implementation(DependenciesPlugin.KotlinXCoroutines)
-    implementation(DependenciesPlugin.KotlinXCoroutinesAndroid)
+    api(project(mapOf("path" to DependenciesPlugin.ModuleCommon)))
     implementation(DependenciesPlugin.Timber)
-
     //hilt
     implementation(DependenciesPlugin.HiltAndroid)
     kapt(DependenciesPlugin.HiltCompiler)
