@@ -1,4 +1,4 @@
-package com.codewithmohsen.domain.entities
+package com.codewithmohsen.domain.entities.resource_entities
 
 sealed class ErrorEntity(open val message: String?) {
 

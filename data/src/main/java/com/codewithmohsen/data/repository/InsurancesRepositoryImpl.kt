@@ -1,12 +1,11 @@
-package com.codewithmohsen.data.remote
+package com.codewithmohsen.data.repository
 
 import com.codewithmohsen.common.Config
 import com.codewithmohsen.common.logger.Logger
 import com.codewithmohsen.data.remote.data_source.RemoteDataSource
-import com.codewithmohsen.domain.Resource
+import com.codewithmohsen.domain.entities.resource_entities.ResourceEntity
 import com.codewithmohsen.domain.di.ApplicationScope
 import com.codewithmohsen.domain.di.IoDispatcher
-import com.codewithmohsen.domain.entities.ErrorEntity
 import com.codewithmohsen.domain.entities.domain_entities.InsuranceResponseItem
 import com.codewithmohsen.domain.network.APIErrorResponse
 import com.codewithmohsen.domain.network.NetworkResponse
@@ -34,10 +33,10 @@ class InsurancesRepositoryImpl @Inject constructor(
     override suspend fun fetchAllInsurances() =
         super.fetch(true)
 
-    override suspend fun getAllInsurances(): Flow<Resource<List<InsuranceResponseItem>>> =
+    override suspend fun getAllInsurances(): Flow<ResourceEntity<List<InsuranceResponseItem>>> =
         super.getResultAsFlow()
 
-    override suspend fun apiCall(): NetworkResponse<List<InsuranceResponseItem>, APIErrorResponse<ErrorEntity>> =
+    override suspend fun apiCall(): NetworkResponse<List<InsuranceResponseItem>, APIErrorResponse> =
         remoteDataSource.getAllInsurances()
 
     override suspend fun bodyToResult(domainEntity: List<InsuranceResponseItem>?): List<InsuranceResponseItem> =

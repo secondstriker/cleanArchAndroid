@@ -1,6 +1,5 @@
 package com.codewithmohsen.data.remote.api
 
-import com.codewithmohsen.domain.entities.ErrorEntity
 import com.codewithmohsen.domain.network.APIErrorResponse
 import com.codewithmohsen.domain.network.NetworkResponse
 import retrofit2.Call
@@ -47,6 +46,6 @@ class NetworkResponseAdapterFactory : CallAdapter.Factory() {
         val errorConverter: Converter<ResponseBody, ApiErrorModel> =
             retrofit.responseBodyConverter(ApiErrorModel::class.java, arrayOfNulls(0))
 
-        return NetworkResponseAdapter<Any, APIErrorResponse<ErrorEntity>>(successBodyType, errorConverter)
+        return NetworkResponseAdapter<Any, APIErrorResponse>(successBodyType, errorConverter)
     }
 }

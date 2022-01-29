@@ -1,6 +1,6 @@
 package com.codewithmohsen.domain.use_case
 
-import com.codewithmohsen.domain.Resource
+import com.codewithmohsen.domain.entities.resource_entities.ResourceEntity
 import com.codewithmohsen.domain.entities.domain_entities.InsuranceResponseItem
 import com.codewithmohsen.domain.repository.InsurancesRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +11,7 @@ class InsurancesUseCase @Inject constructor(
     private val insurancesRepository: InsurancesRepository
 ) {
 
-    suspend operator fun invoke(): Flow<Resource<List<InsuranceResponseItem>>> {
+    suspend operator fun invoke(): Flow<ResourceEntity<List<InsuranceResponseItem>>> {
         return insurancesRepository.getAllInsurances()
     }
 

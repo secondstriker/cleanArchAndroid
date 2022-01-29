@@ -1,11 +1,11 @@
 package com.codewithmohsen.domain.network
 
-sealed class APIErrorResponse<E> {
+sealed class APIErrorResponse(open val message: String) {
 
     /**
      * Unauthenticated User (error 401)
      */
-    data class Unauthenticated<E>(val error: E) : APIErrorResponse<E>()
+    data class Unauthenticated(override val message: String): APIErrorResponse(message)
 
     /**
      * Called for [400, 500) responses, except 401.
@@ -14,16 +14,16 @@ sealed class APIErrorResponse<E> {
      * And 429 - Too Many Requests. You made too many requests within a window of time and have been rate limited.
      * Back off for a while.
      **/
-    data class ClientErrorResponse<E>(val error: E) : APIErrorResponse<E>()
+    data class ClientErrorResponse(override val message: String) : APIErrorResponse(message)
 
     /**
      * Called for [500, 600)
      * In this case we have 500 - Server Error. Something went wrong on our side.
      **/
-    data class ServerErrorResponse<E>(val error: E) : APIErrorResponse<E>()
+    data class ServerErrorResponse(override val message: String) : APIErrorResponse(message)
 
     /**
      *  Unexpected
      **/
-    data class UnexpectedErrorResponse<E>(val error: E) : APIErrorResponse<E>()
+    data class UnexpectedErrorResponse(override val message: String) : APIErrorResponse(message)
 }

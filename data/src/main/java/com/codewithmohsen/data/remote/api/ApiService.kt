@@ -1,6 +1,5 @@
 package com.codewithmohsen.data.remote.api
 
-import com.codewithmohsen.domain.entities.ErrorEntity
 import com.codewithmohsen.domain.entities.domain_entities.InsuranceResponseItem
 import com.codewithmohsen.domain.network.APIErrorResponse
 import com.codewithmohsen.domain.network.NetworkResponse
@@ -13,6 +12,6 @@ interface ApiService {
      * get insurances
      */
     @GET(Constants.TEST_URL)
-    suspend fun getAllInsurances(): NetworkResponse<List<InsuranceResponseItem>, APIErrorResponse<ErrorEntity>>
+    suspend fun getAllInsurances(): NetworkResponse<List<InsuranceResponseItem>, APIErrorResponse>
 
 }

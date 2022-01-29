@@ -1,6 +1,5 @@
 package com.codewithmohsen.data.remote.api
 
-import com.codewithmohsen.domain.entities.ErrorEntity
 import com.codewithmohsen.domain.network.APIErrorResponse
 import com.codewithmohsen.domain.network.NetworkResponse
 import okhttp3.Request
@@ -12,7 +11,7 @@ import java.io.IOException
 import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
 
-class NetworkResponseAdapter<S : Any, E : APIErrorResponse<ErrorEntity>>(
+class NetworkResponseAdapter<S : Any, E : APIErrorResponse>(
     private val successType: Type,
     private val errorEntityConverter: Converter<ResponseBody, ApiErrorModel>
 ) : CallAdapter<S, Call<NetworkResponse<S, E>>> {
@@ -23,7 +22,7 @@ class NetworkResponseAdapter<S : Any, E : APIErrorResponse<ErrorEntity>>(
         return NetworkResponseCall(call, errorEntityConverter)
     }
 
-    internal class NetworkResponseCall<S : Any, E : APIErrorResponse<ErrorEntity>>(
+    internal class NetworkResponseCall<S : Any, E : APIErrorResponse>(
         private val delegate: Call<S>,
         private val errorConverter: Converter<ResponseBody, ApiErrorModel>
     ) : Call<NetworkResponse<S, E>> {
@@ -88,12 +87,12 @@ class NetworkResponseAdapter<S : Any, E : APIErrorResponse<ErrorEntity>>(
         private fun createApiErrorResponse(
             code: Int,
             apiErrorModel: ApiErrorModel
-        ): APIErrorResponse<ErrorEntity> {
+        ): APIErrorResponse {
             return when (code) {
-                401 -> APIErrorResponse.Unauthenticated(ErrorEntity.Unauthenticated(apiErrorModel.message))
-                in 400..499 -> APIErrorResponse.ClientErrorResponse(ErrorEntity.ClientError(apiErrorModel.message))
-                in 500..599 -> APIErrorResponse.ServerErrorResponse(ErrorEntity.ServerError(apiErrorModel.message))
-                else -> APIErrorResponse.UnexpectedErrorResponse(ErrorEntity.UnknownError(apiErrorModel.message))
+                401 -> APIErrorResponse.Unauthenticated(apiErrorModel.message)
+                in 400..499 -> APIErrorResponse.ClientErrorResponse(apiErrorModel.message)
+                in 500..599 -> APIErrorResponse.ServerErrorResponse(apiErrorModel.message)
+                else -> APIErrorResponse.UnexpectedErrorResponse(apiErrorModel.message)
             }
         }
 

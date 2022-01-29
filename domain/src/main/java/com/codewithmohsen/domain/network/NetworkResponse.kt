@@ -1,8 +1,6 @@
 package com.codewithmohsen.domain.network
 
-import com.codewithmohsen.domain.entities.ErrorEntity
-
-sealed class NetworkResponse<out T: Any, out E: APIErrorResponse<ErrorEntity>> {
+sealed class NetworkResponse<out T: Any, out E: APIErrorResponse> {
 
     /**
      * Success response with body
@@ -17,7 +15,7 @@ sealed class NetworkResponse<out T: Any, out E: APIErrorResponse<ErrorEntity>> {
     /**
      * Failure response, API error
      */
-    data class APIError<E: APIErrorResponse<ErrorEntity>>(val apiErrorResponse: E) : NetworkResponse<Nothing, E>()
+    data class APIError<E: APIErrorResponse>(val apiErrorResponse: E) : NetworkResponse<Nothing, E>()
 
     /**
      * Network error
