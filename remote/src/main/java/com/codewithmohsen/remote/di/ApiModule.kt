@@ -1,11 +1,11 @@
-package com.codewithmohsen.data.di
+package com.codewithmohsen.remote.di
 
 
-import com.codewithmohsen.data.BuildConfig
-import com.codewithmohsen.data.remote.api.ApiService
-import com.codewithmohsen.data.remote.api.ClientInterceptor
-import com.codewithmohsen.data.remote.api.Constants
-import com.codewithmohsen.data.remote.api.NetworkResponseAdapterFactory
+import com.codewithmohsen.remote.BuildConfig
+import com.codewithmohsen.remote.api.ApiService
+import com.codewithmohsen.remote.api.ClientInterceptor
+import com.codewithmohsen.remote.api.Constants
+import com.codewithmohsen.remote.api.NetworkResponseAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

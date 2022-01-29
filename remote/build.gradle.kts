@@ -36,16 +36,18 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to DependenciesPlugin.ModuleCommon)))
     implementation(project(mapOf("path" to DependenciesPlugin.ModuleDomain)))
-    implementation(project(mapOf("path" to DependenciesPlugin.ModuleRemote)))
 
+    implementation(DependenciesPlugin.Moshi)
+    implementation(DependenciesPlugin.MoshiKotlin)
 
-    implementation(DependenciesPlugin.KotlinXCoroutines)
-    implementation(DependenciesPlugin.KotlinXCoroutinesAndroid)
     implementation(DependenciesPlugin.Timber)
 
     //hilt
     implementation(DependenciesPlugin.HiltAndroid)
     kapt(DependenciesPlugin.HiltCompiler)
+
+    implementation(DependenciesPlugin.Retrofit)
+    implementation(DependenciesPlugin.RetrofitMoshiConverter)
+    implementation(DependenciesPlugin.OkhttpInterceptor)
 }

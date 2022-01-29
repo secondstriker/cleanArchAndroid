@@ -17,6 +17,7 @@ class DependenciesPlugin : Plugin<Project> {
         const val ModuleCommon = ":common"
         const val ModuleData = ":data"
         const val ModuleDomain = ":domain"
+        const val ModuleRemote = ":remote"
         const val ModulePresentation = ":presentation"
 
         const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.2"

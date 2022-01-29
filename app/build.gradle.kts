@@ -58,13 +58,5 @@ dependencies {
     implementation(DependenciesPlugin.HiltAndroid)
     kapt(DependenciesPlugin.HiltCompiler)
 
-    // For local unit tests (robolectric)
-    testImplementation(DependenciesPlugin.HiltAndroidTesting)
-    kaptTest(DependenciesPlugin.HiltAndroidCompiler)
-
-    // For instrumentation tests
-    androidTestImplementation(DependenciesPlugin.HiltAndroidTesting)
-    kaptAndroidTest(DependenciesPlugin.HiltAndroidCompiler)
-
     implementation(DependenciesPlugin.MultiDexApplication)
 }

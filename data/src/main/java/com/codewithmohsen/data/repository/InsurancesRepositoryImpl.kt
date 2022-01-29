@@ -2,7 +2,7 @@ package com.codewithmohsen.data.repository
 
 import com.codewithmohsen.common.Config
 import com.codewithmohsen.common.logger.Logger
-import com.codewithmohsen.data.remote.data_source.RemoteDataSource
+import com.codewithmohsen.data.data_source.RemoteDataSource
 import com.codewithmohsen.domain.entities.resource_entities.ResourceEntity
 import com.codewithmohsen.domain.di.ApplicationScope
 import com.codewithmohsen.domain.di.IoDispatcher

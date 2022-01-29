@@ -1,4 +1,4 @@
-package com.codewithmohsen.data.remote.api
+package com.codewithmohsen.remote.api
 
 object Constants {
 

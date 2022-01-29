@@ -1,6 +1,6 @@
-package com.codewithmohsen.data.remote.data_source
+package com.codewithmohsen.data.data_source
 
-import com.codewithmohsen.data.remote.api.ApiService
+import com.codewithmohsen.remote.api.ApiService
 import com.codewithmohsen.domain.entities.domain_entities.InsuranceResponseItem
 import com.codewithmohsen.domain.network.APIErrorResponse
 import com.codewithmohsen.domain.network.NetworkResponse
