@@ -44,8 +44,8 @@ class NetworkResponseAdapterFactory : CallAdapter.Factory() {
         Timber.d("successResponseType $successBodyType")
 
         // Look up a converter for the Error type on the Retrofit instance.
-        val errorConverter: Converter<ResponseBody, ErrorEntity> =
-            retrofit.responseBodyConverter(ErrorEntity::class.java, arrayOfNulls(0))
+        val errorConverter: Converter<ResponseBody, ApiErrorModel> =
+            retrofit.responseBodyConverter(ApiErrorModel::class.java, arrayOfNulls(0))
 
         return NetworkResponseAdapter<Any, APIErrorResponse<ErrorEntity>>(successBodyType, errorConverter)
     }

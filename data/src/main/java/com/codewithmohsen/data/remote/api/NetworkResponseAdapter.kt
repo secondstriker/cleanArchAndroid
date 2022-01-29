@@ -14,18 +14,18 @@ import java.util.concurrent.TimeUnit
 
 class NetworkResponseAdapter<S : Any, E : APIErrorResponse<ErrorEntity>>(
     private val successType: Type,
-    private val ErrorEntityConverter: Converter<ResponseBody, ErrorEntity>
+    private val errorEntityConverter: Converter<ResponseBody, ApiErrorModel>
 ) : CallAdapter<S, Call<NetworkResponse<S, E>>> {
 
     override fun responseType(): Type = successType
 
     override fun adapt(call: Call<S>): Call<NetworkResponse<S, E>> {
-        return NetworkResponseCall(call, ErrorEntityConverter)
+        return NetworkResponseCall(call, errorEntityConverter)
     }
 
     internal class NetworkResponseCall<S : Any, E : APIErrorResponse<ErrorEntity>>(
         private val delegate: Call<S>,
-        private val errorConverter: Converter<ResponseBody, ErrorEntity>
+        private val errorConverter: Converter<ResponseBody, ApiErrorModel>
     ) : Call<NetworkResponse<S, E>> {
 
         override fun enqueue(callback: Callback<NetworkResponse<S, E>>) {
@@ -65,7 +65,7 @@ class NetworkResponseAdapter<S : Any, E : APIErrorResponse<ErrorEntity>>(
                                 NetworkResponse.APIError(
                                     createApiErrorResponse(
                                         code,
-                                        errorBody ?: ErrorEntity.UnknownError(ERROR_MESSAGE)
+                                        errorBody ?: ApiErrorModel(ERROR_MESSAGE)
                                     )
                                 )
                                         as NetworkResponse<S, E>
@@ -87,20 +87,20 @@ class NetworkResponseAdapter<S : Any, E : APIErrorResponse<ErrorEntity>>(
 
         private fun createApiErrorResponse(
             code: Int,
-            errorEntity: ErrorEntity
+            apiErrorModel: ApiErrorModel
         ): APIErrorResponse<ErrorEntity> {
             return when (code) {
-                401 -> APIErrorResponse.Unauthenticated(errorEntity)
-                in 400..499 -> APIErrorResponse.ClientErrorResponse(errorEntity)
-                in 500..599 -> APIErrorResponse.ServerErrorResponse(errorEntity)
-                else -> APIErrorResponse.UnexpectedErrorResponse(errorEntity)
+                401 -> APIErrorResponse.Unauthenticated(ErrorEntity.Unauthenticated(apiErrorModel.message))
+                in 400..499 -> APIErrorResponse.ClientErrorResponse(ErrorEntity.ClientError(apiErrorModel.message))
+                in 500..599 -> APIErrorResponse.ServerErrorResponse(ErrorEntity.ServerError(apiErrorModel.message))
+                else -> APIErrorResponse.UnexpectedErrorResponse(ErrorEntity.UnknownError(apiErrorModel.message))
             }
         }
 
         /**
          * We use Kotlin reflection for converting ResponseBody to ErrorBody.
          */
-        private fun convertToErrorBody(error: ResponseBody?): ErrorEntity? {
+        private fun convertToErrorBody(error: ResponseBody?): ApiErrorModel? {
             return when {
                 error == null -> null
                 error.contentLength() == 0L -> null
