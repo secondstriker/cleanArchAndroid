@@ -1,14 +1,15 @@
 import com.codewithmohsen.gradle.DependenciesPlugin
 
 plugins {
-    id("com.android.library")
+    id("java-library")
+    id("kotlin")
     id("kotlin-kapt")
-    id("kotlin-android")
     id("com.codewithmohsen.dependencies")
 }
 
-android {
-    compileSdk = DependenciesPlugin.CompileSdk
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {

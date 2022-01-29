@@ -1,16 +1,9 @@
-import com.codewithmohsen.gradle.DependenciesPlugin
-
 plugins {
-    id("com.android.library")
-    id("kotlin-kapt")
-    id("kotlin-android")
-    id("com.codewithmohsen.dependencies")
+    id("java-library")
+    id("kotlin")
 }
 
-android {
-    compileSdk = DependenciesPlugin.CompileSdk
-}
-
-dependencies {
-    implementation(DependenciesPlugin.KotlinXCoroutines)
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
