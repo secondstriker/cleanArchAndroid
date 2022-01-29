@@ -19,6 +19,7 @@ class DependenciesPlugin : Plugin<Project> {
         const val ModuleDomain = ":domain"
         const val ModulePresentation = ":presentation"
 
+        const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.2"
         const val AndroidxCore = "androidx.core:core-ktx:1.6.0"
         const val AndroidxAppCompat = "androidx.appcompat:appcompat:1.3.1"
         const val AndroidxJUnit = "androidx.test.ext:junit:1.1.3"

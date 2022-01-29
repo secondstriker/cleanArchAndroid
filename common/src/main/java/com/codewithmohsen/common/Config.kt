@@ -1,4 +1,4 @@
-package com.codewithmohsen.domain
+package com.codewithmohsen.common
 
 interface Config {
 

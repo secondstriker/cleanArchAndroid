@@ -7,5 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface InsurancesRepository {
 
+    suspend fun fetchAllInsurances()
     suspend fun getAllInsurances(): Flow<Resource<List<InsuranceResponseItem>>>
 }

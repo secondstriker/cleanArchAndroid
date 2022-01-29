@@ -1,4 +1,4 @@
-package com.codewithmohsen.data.api
+package com.codewithmohsen.data.remote.api
 
 import com.codewithmohsen.domain.entities.ErrorEntity
 import com.codewithmohsen.domain.network.APIErrorResponse

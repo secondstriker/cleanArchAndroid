@@ -1,4 +1,4 @@
-package com.codewithmohsen.domain.logger
+package com.codewithmohsen.common.logger
 
 interface Logger {
 

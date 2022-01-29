@@ -36,10 +36,17 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to DependenciesPlugin.ModuleCommon)))
+    implementation(project(mapOf("path" to DependenciesPlugin.ModuleDomain)))
+
+    implementation(DependenciesPlugin.Moshi)
+    implementation(DependenciesPlugin.MoshiCodeGenerator)
+    implementation(DependenciesPlugin.MoshiKotlin)
+
+
     implementation(DependenciesPlugin.AndroidxCore)
     implementation(DependenciesPlugin.Material)
     implementation(DependenciesPlugin.AndroidxAppCompat)
-    implementation(project(mapOf("path" to ":domain")))
     androidTestImplementation(DependenciesPlugin.AndroidxJUnit)
     androidTestImplementation(DependenciesPlugin.AndroidxEspresso)
 

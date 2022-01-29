@@ -1,24 +1,24 @@
 package com.codewithmohsen.domain.repository
 
-import com.codewithmohsen.domain.Config
+import com.codewithmohsen.common.Config
 import com.codewithmohsen.domain.Resource
 import com.codewithmohsen.domain.di.ApplicationScope
 import com.codewithmohsen.domain.di.IoDispatcher
 import com.codewithmohsen.domain.entities.ErrorEntity
-import com.codewithmohsen.domain.logger.Logger
+import com.codewithmohsen.common.logger.Logger
 import com.codewithmohsen.domain.network.APIErrorResponse
 import com.codewithmohsen.domain.network.NetworkResponse
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-abstract class BaseOnlineRepository<Domain: Any, Result: Any>(
+abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
     @ApplicationScope private val externalCoroutineScope: CoroutineScope,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val logger: Logger,
     private val config: Config
 ) {
 
-    private val _result = MutableStateFlow<Resource<Result>>(Resource.Loading(null))
+    private val _result = MutableStateFlow<Resource<ResultEntity>>(Resource.Loading(null))
 
     protected suspend fun fetch(refresh: Boolean) = withContext(ioDispatcher) {
 
@@ -104,11 +104,11 @@ abstract class BaseOnlineRepository<Domain: Any, Result: Any>(
         }
     }
 
-    private suspend fun setValue(resource: Resource<Result>) {
+    private suspend fun setValue(resource: Resource<ResultEntity>) {
         _result.emit(resource)
     }
 
-    private suspend fun setErrorValue(data: Result?, errorEntity: ErrorEntity) {
+    private suspend fun setErrorValue(data: ResultEntity?, errorEntity: ErrorEntity) {
         _result.emit(Resource.Error(data, errorEntity))
     }
 
@@ -119,8 +119,8 @@ abstract class BaseOnlineRepository<Domain: Any, Result: Any>(
     }
 
     protected open fun getResultAsFlow() = _result.asStateFlow()
-    protected abstract suspend fun apiCall(): NetworkResponse<Domain,  APIErrorResponse<ErrorEntity>>
-    protected abstract suspend fun bodyToResult(apiModel: Domain?): Result
+    protected abstract suspend fun apiCall(): NetworkResponse<DomainEntity,  APIErrorResponse<ErrorEntity>>
+    protected abstract suspend fun bodyToResult(domainEntity: DomainEntity?): ResultEntity
     protected open suspend fun onGetResultSucceed() {}
     protected open suspend fun onGetResultFailed(cause: Throwable) {}
     protected open suspend fun onGetResultCancelled() {}

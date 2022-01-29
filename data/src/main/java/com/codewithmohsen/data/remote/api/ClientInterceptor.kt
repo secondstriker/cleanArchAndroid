@@ -1,4 +1,4 @@
-package com.codewithmohsen.data.api
+package com.codewithmohsen.data.remote.api
 
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
