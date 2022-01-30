@@ -27,22 +27,24 @@ abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
          apiJob.invokeOnCompletion { cause ->
              logger.d(TAG, "invokeOnCompletion")
              if (longLoadingJob.isActive) {
-                 logger.d(TAG, "invokeOnCompletion long loading is cancelled.")
+                 logger.i(TAG, "invokeOnCompletion long loading is cancelled.")
                  longLoadingJob.cancel()
              }
              if(apiJob.isCancelled) {
-                 logger.d(TAG, "invokeOnCompletion main job is cancelled.")
+                 logger.i(TAG, "invokeOnCompletion cancelled.")
                  externalCoroutineScope.launch(ioDispatcher) {
                      setValue(ResourceEntity.Cancel(_result.value.data))
                      onGetResultCancelled()
                  }
              }
              if(!apiJob.isCancelled && cause == null) {
-                externalCoroutineScope.launch(ioDispatcher) {
+                 logger.i(TAG, "invokeOnCompletion succeed")
+                 externalCoroutineScope.launch(ioDispatcher) {
                     onGetResultSucceed()
                 }
              }
              if(!apiJob.isCancelled && cause != null) {
+                 logger.d(TAG, "invokeOnCompletion failed")
                  externalCoroutineScope.launch(ioDispatcher) {
                      onGetResultFailed(cause)
                  }

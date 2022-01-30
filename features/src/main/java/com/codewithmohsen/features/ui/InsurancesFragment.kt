@@ -53,7 +53,7 @@ class InsurancesFragment: Fragment() {
                         (resource is ResourceEntity.Loading<*>) ||
                         (resource is ResourceEntity.LongLoading<*>)
 
-                    binding.cancelContainer.visibility =
+                    binding.cancelContainer.container.visibility =
                         if(resource is ResourceEntity.LongLoading<*> && resource.data == null)
                             View.VISIBLE
                         else
@@ -64,6 +64,10 @@ class InsurancesFragment: Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.fetch()
+        }
+
+        binding.cancelContainer.cancelButton.setOnClickListener {
+            viewModel.cancel()
         }
 
         viewModel.fetch()
