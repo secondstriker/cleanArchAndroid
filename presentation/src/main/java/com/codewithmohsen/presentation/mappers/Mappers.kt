@@ -12,9 +12,9 @@ fun InsuranceResponseItem.map(): InsuranceModel =
         //because we don't need to cover filters, we just get the first item in the prices list.
         price = (this.prices?.get(0)?.price ?: 0).toFloat(),
         //we hardcode discount due to project requirement
-        discount = 10F,
-        discountedPrice = (this.prices?.get(0)?.price ?: 0) * 0.1F,
-        rate = this.satisfaction?.toFloat() ?: 0F,
+        discount = "10%",
+        discountedPrice = (this.prices?.get(0)?.price ?: 0) * 0.9F,
+        rate = this.wealthLevel?.toFloat() ?: 0F,
         //we hardcode commentsCount because there is no comments count in API
         commentsCount = 0
     )

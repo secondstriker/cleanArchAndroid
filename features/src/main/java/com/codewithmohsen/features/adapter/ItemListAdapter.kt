@@ -56,6 +56,6 @@ class ItemListAdapter(
 
     override fun bind(binding: InsuranceItemBinding, item: InsuranceModel) {
         binding.item = item
-        binding.discountedPrice.text = Html.fromHtml("<s> ${item.discountedPrice} </s>")
+        binding.price.text = Html.fromHtml("<s> ${item.price} </s>")
     }
 }
