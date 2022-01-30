@@ -20,6 +20,7 @@ class DependenciesPlugin : Plugin<Project> {
         const val ModuleDomain = ":domain"
         const val ModuleRemote = ":remote"
         const val ModulePresentation = ":presentation"
+        const val ModuleFeatures = ":features"
 
         const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.2"
         const val AndroidxCore = "androidx.core:core-ktx:1.6.0"

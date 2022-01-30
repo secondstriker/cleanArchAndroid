@@ -6,6 +6,7 @@ import com.codewithmohsen.presentation.models.InsuranceModel
 
 fun InsuranceResponseItem.map(): InsuranceModel =
     InsuranceModel(
+        id = this.id ?: 0,
         title = this.title ?: "",
         logoUrl = this.icon ?: "",
         //because we don't need to cover filters, we just get the first item in the prices list.

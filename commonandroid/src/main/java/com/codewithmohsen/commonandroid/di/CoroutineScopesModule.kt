@@ -1,5 +1,6 @@
 package com.codewithmohsen.commonandroid.di
 
+import com.codewithmohsen.domain.di.ApplicationScope
 import com.codewithmohsen.domain.di.DefaultDispatcher
 import dagger.Module
 import dagger.Provides
@@ -7,16 +8,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.*
 import timber.log.Timber
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
 object CoroutinesScopesModule {
-
-    @Retention(AnnotationRetention.RUNTIME)
-    @Qualifier
-    annotation class ApplicationScope
 
     /**
      * get scope from application to do something independently from our coroutine scopes.

@@ -11,6 +11,12 @@ interface ApiService {
     /**
      * get insurances
      */
+    @Headers(
+        "deviceID: 2",
+        "Content-Type: application/json",
+        "Accept: application/json",
+        "User-Agent: PostmanRuntime/7.29.0"
+    )
     @GET(Constants.TEST_URL)
     suspend fun getAllInsurances(): NetworkResponse<List<InsuranceResponseItem>, APIErrorResponse>
 

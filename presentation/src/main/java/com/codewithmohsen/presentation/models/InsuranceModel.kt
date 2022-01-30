@@ -1,6 +1,7 @@
 package com.codewithmohsen.presentation.models
 
 data class InsuranceModel(
+    var id: Int,
     var title: String,
     var logoUrl: String,
     var price: Float,

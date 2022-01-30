@@ -1,24 +1,19 @@
 import com.codewithmohsen.gradle.DependenciesPlugin
 
-        plugins {
-            id("com.android.application")
-            id("kotlin-kapt")
-            id("kotlin-android")
-            id("com.codewithmohsen.dependencies")
-            id("dagger.hilt.android.plugin")
-        }
+plugins {
+    id("com.android.library")
+    id("kotlin-kapt")
+    id("kotlin-android")
+    id("com.codewithmohsen.dependencies")
+    id("dagger.hilt.android.plugin")
+}
 
 android {
     compileSdk = DependenciesPlugin.CompileSdk
 
     defaultConfig {
-        applicationId = "com.codewithmohsen.insurancecomparator"
         minSdk = DependenciesPlugin.MinSdk
         targetSdk = DependenciesPlugin.TargetSdk
-        versionCode = 1
-        versionName = "1.0"
-        multiDexEnabled = true
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -41,12 +36,8 @@ android {
 }
 
 dependencies {
-    implementation(project(DependenciesPlugin.ModuleDomain))
-    implementation(project(DependenciesPlugin.ModuleCommonAndroid))
-    implementation(project(DependenciesPlugin.ModuleRemote))
-    implementation(project(DependenciesPlugin.ModuleData))
-    implementation(project(DependenciesPlugin.ModulePresentation))
-    implementation(project(DependenciesPlugin.ModuleFeatures))
+    implementation(project(mapOf("path" to DependenciesPlugin.ModuleDomain)))
+    implementation(project(mapOf("path" to DependenciesPlugin.ModulePresentation)))
 
     implementation(DependenciesPlugin.AndroidxCore)
     implementation(DependenciesPlugin.Material)
@@ -54,15 +45,22 @@ dependencies {
     androidTestImplementation(DependenciesPlugin.AndroidxJUnit)
     androidTestImplementation(DependenciesPlugin.AndroidxEspresso)
 
-    implementation(DependenciesPlugin.Retrofit)
-    implementation(DependenciesPlugin.RetrofitMoshiConverter)
-    implementation(DependenciesPlugin.OkhttpInterceptor)
-
     implementation(DependenciesPlugin.KotlinXCoroutines)
     implementation(DependenciesPlugin.KotlinXCoroutinesAndroid)
+
     implementation(DependenciesPlugin.Timber)
 
     //hilt
     implementation(DependenciesPlugin.HiltAndroid)
     kapt(DependenciesPlugin.HiltCompiler)
+
+    implementation(DependenciesPlugin.ViewModelRuntimeKtx)
+    implementation(DependenciesPlugin.lifecycleViewModelKtx)
+    implementation(DependenciesPlugin.Glide)
+    kapt(DependenciesPlugin.GlideKtx)
+
+    implementation(DependenciesPlugin.SwipeRefreshLayout)
+
+    implementation(DependenciesPlugin.PreferencesKotlin)
+//    implementation(DependenciesPlugin.MultiDexApplication)
 }
