@@ -15,8 +15,9 @@ interface ApiService {
         "deviceID: 2",
         "Content-Type: application/json",
         "Accept: application/json",
-        "User-Agent: PostmanRuntime/7.29.0"
+        "User-Agent: Insurance Comparator App"
     )
+    //due to project requirement, we just hard code the input parameters
     @GET(Constants.TEST_URL)
     suspend fun getAllInsurances(): NetworkResponse<List<InsuranceResponseItem>, APIErrorResponse>
 

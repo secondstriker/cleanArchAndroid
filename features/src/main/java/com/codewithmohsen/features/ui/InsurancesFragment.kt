@@ -10,11 +10,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.codewithmohsen.domain.entities.resource_entities.ErrorEntity
 import com.codewithmohsen.domain.entities.resource_entities.ResourceEntity
 import com.codewithmohsen.features.R
 import com.codewithmohsen.features.adapter.ItemListAdapter
 import com.codewithmohsen.features.databinding.FragmentInsuranceListBinding
 import com.codewithmohsen.presentation.vms.InsurancesViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
@@ -58,6 +60,16 @@ class InsurancesFragment: Fragment() {
                             View.VISIBLE
                         else
                             View.GONE
+
+                    when(resource.errorEntity){
+                        is ErrorEntity.ClientError -> showSnackBar(binding.root, R.string.common_error)
+                        is ErrorEntity.NetworkError -> showSnackBar(binding.root, R.string.network_error)
+                        is ErrorEntity.ServerError -> showSnackBar(binding.root, R.string.server_error)
+                        is ErrorEntity.Unauthenticated -> showSnackBar(binding.root, R.string.unauthenticated_error)
+                        is ErrorEntity.UnknownError -> showSnackBar(binding.root, R.string.common_error)
+                        null -> {
+                        }
+                    }
                 }
             }
         }
@@ -73,5 +85,10 @@ class InsurancesFragment: Fragment() {
         viewModel.fetch()
 
         return binding.root
+    }
+
+    private fun showSnackBar(view:View, resId: Int) {
+        Snackbar.make(view, resources.getString(resId),
+            Snackbar.LENGTH_LONG).show()
     }
 }

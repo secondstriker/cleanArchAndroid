@@ -11,5 +11,10 @@
     <string name="toman">تومان</string>
     <string name="see_and_order">مشاهده و سفارش</string>
 
+    <string name="common_error">متاسفانه اشکالی پیش آمد. لطفا مجدداْ امتحان کنید.</string>
+    <string name="server_error">متاسفانه در سرور اشکالی پیش آمد. لطفاْ بعدا امتحان کنید.</string>
+    <string name="network_error">به نظر می رسد که شبکه شما اشکالی دارد. لطفاْ آن را بررسی کرده و مجدداٌ امتحان کنید.</string>
+    <string name="unauthenticated_error">متاسفانه در احراز هویت اشکالی پیش آمد. لطفاْ با توسعه دهنده تماس بگیرید.</string>
+
 
 </resources>
