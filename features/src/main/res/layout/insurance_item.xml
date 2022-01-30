@@ -39,8 +39,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:background="@color/teal_700" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
@@ -56,6 +57,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/rate"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
@@ -70,8 +72,9 @@
                 app:layout_constraintTop_toBottomOf="@id/logo"
                 tools:text=" 4.35" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/from5_comments_count"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="3dp"
@@ -85,8 +88,9 @@
                 app:layout_constraintTop_toTopOf="@id/rate"
                 tools:text="از ۵  (۲۰۰ نظر)" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/discount"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -101,8 +105,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="10%" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/discountedPrice"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -116,8 +121,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="677577" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/toman"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -130,8 +136,9 @@
                 app:layout_constraintEnd_toEndOf="@id/discount"
                 android:text="@string/toman" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/price"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
@@ -157,7 +164,9 @@
                 app:layout_constraintTop_toBottomOf="@id/rate"
                 android:layout_marginTop="16dp"/>
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/see_and_order"
+                style="@style/yekanFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/see_and_order"
@@ -170,9 +179,6 @@
                 android:gravity="start|center_vertical"
                 android:drawableLeft="@drawable/ic_baseline_arrow_left_24" />
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
 </layout>

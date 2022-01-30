@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="yekanFontStyle" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">@font/font_yekan</item>
+    </style>
+
+
+</resources>
