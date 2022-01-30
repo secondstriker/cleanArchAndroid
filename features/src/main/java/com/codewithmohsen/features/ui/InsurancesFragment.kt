@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.codewithmohsen.domain.entities.resource_entities.ResourceEntity
 import com.codewithmohsen.features.R
 import com.codewithmohsen.features.adapter.ItemListAdapter
 import com.codewithmohsen.features.databinding.FragmentInsuranceListBinding
@@ -18,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class InsurancesFragment: Fragment() {
@@ -43,9 +45,25 @@ class InsurancesFragment: Fragment() {
         lifecycleScope.launch(job) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getInsurances().collect { resource ->
+                    Timber.d("resource -> $resource")
+
                     adapter.submitList(resource.data)
+
+                    binding.swipeRefresh.isRefreshing =
+                        (resource is ResourceEntity.Loading<*>) ||
+                        (resource is ResourceEntity.LongLoading<*>)
+
+                    binding.cancelContainer.visibility =
+                        if(resource is ResourceEntity.LongLoading<*> && resource.data == null)
+                            View.VISIBLE
+                        else
+                            View.GONE
                 }
             }
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.fetch()
         }
 
         viewModel.fetch()
