@@ -3,6 +3,13 @@
     <string name="icon_of_the_insurance_company">icon of the insurance company</string>
     <string name="you_may_want_to_cancel_or_change_your_network">You may want to cancel or change your network.</string>
     <string name="cancel">Cancel</string>
+    <string name="just_star">just star</string>
+    <string name="from5_comments_count">از ۵  (%d نظر)</string>
+    <string name="rate"> %.2f</string>
+    <string name="discounted_price"><u> %.0f </u></string>
+    <string name="price_format">%.0f</string>
+    <string name="toman">تومان</string>
+    <string name="see_and_order">مشاهده و سفارش</string>
 
 
 </resources>

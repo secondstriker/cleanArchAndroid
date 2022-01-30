@@ -1,5 +1,6 @@
 package com.codewithmohsen.features.adapter
 
+import android.text.Html
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import android.view.LayoutInflater
@@ -55,5 +56,6 @@ class ItemListAdapter(
 
     override fun bind(binding: InsuranceItemBinding, item: InsuranceModel) {
         binding.item = item
+        binding.discountedPrice.text = Html.fromHtml("<s> ${item.discountedPrice} </s>")
     }
 }
