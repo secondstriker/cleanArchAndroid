@@ -97,14 +97,14 @@ class NetworkResponseAdapter<S : Any, E : APIErrorResponse>(
         }
 
         /**
-         * We use Kotlin reflection for converting ResponseBody to ErrorBody.
+         * We use Kotlin reflection for converting ResponseBody to ApiErrorModel.
          */
         private fun convertToErrorBody(error: ResponseBody?): ApiErrorModel? {
             return when {
                 error == null -> null
                 error.contentLength() == 0L -> null
                 else -> try {
-                    //we use kotlin reflection for converting the body to ErrorBody Class
+                    //we use kotlin reflection for converting the body to ApiErrorModel Class
                     errorConverter.convert(error)
                 } catch (ex: Exception) {
                     null

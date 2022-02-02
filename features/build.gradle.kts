@@ -54,13 +54,14 @@ dependencies {
     implementation(DependenciesPlugin.HiltAndroid)
     kapt(DependenciesPlugin.HiltCompiler)
 
+    //lifecycle libraries
     implementation(DependenciesPlugin.ViewModelRuntimeKtx)
     implementation(DependenciesPlugin.lifecycleViewModelKtx)
+    implementation(DependenciesPlugin.PreferencesKotlin)
+
+    //UI libraries
     implementation(DependenciesPlugin.Glide)
     kapt(DependenciesPlugin.GlideKtx)
-
     implementation(DependenciesPlugin.SwipeRefreshLayout)
 
-    implementation(DependenciesPlugin.PreferencesKotlin)
-//    implementation(DependenciesPlugin.MultiDexApplication)
 }

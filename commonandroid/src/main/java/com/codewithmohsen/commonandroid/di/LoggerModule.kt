@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 abstract class LoggerModule {
 
     @Binds
-    abstract fun providesLogger(loggerImpl: LoggerImpl): Logger
+    abstract fun bindsLogger(loggerImpl: LoggerImpl): Logger
 }

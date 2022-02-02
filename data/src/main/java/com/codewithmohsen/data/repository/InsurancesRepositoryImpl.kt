@@ -39,6 +39,6 @@ class InsurancesRepositoryImpl @Inject constructor(
     override suspend fun apiCall(): NetworkResponse<List<InsuranceResponseItem>, APIErrorResponse> =
         remoteDataSource.getAllInsurances()
 
-    override suspend fun bodyToResult(domainEntity: List<InsuranceResponseItem>?): List<InsuranceResponseItem> =
+    override suspend fun toResult(domainEntity: List<InsuranceResponseItem>?): List<InsuranceResponseItem> =
         domainEntity ?: mutableListOf()
 }

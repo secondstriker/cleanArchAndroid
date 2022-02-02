@@ -24,14 +24,15 @@ abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
 
         val apiJob = launch(ioDispatcher) { getData(refresh) }
         val longLoadingJob = launch(ioDispatcher) { longLoading() }
+
          apiJob.invokeOnCompletion { cause ->
              logger.d(TAG, "invokeOnCompletion")
              if (longLoadingJob.isActive) {
-                 logger.i(TAG, "invokeOnCompletion long loading is cancelled.")
+                 logger.d(TAG, "invokeOnCompletion long loading job is cancelled.")
                  longLoadingJob.cancel()
              }
              if(apiJob.isCancelled) {
-                 logger.i(TAG, "invokeOnCompletion cancelled.")
+                 logger.i(TAG, "invokeOnCompletion api job is cancelled.")
                  externalCoroutineScope.launch(ioDispatcher) {
                      setValue(ResourceEntity.Cancel(_result.value.data))
                      onGetResultCancelled()
@@ -50,6 +51,7 @@ abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
                  }
              }
          }
+
         listOf(apiJob, longLoadingJob).joinAll()
     }
 
@@ -64,8 +66,7 @@ abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
             is NetworkResponse.APIError -> {
                 when (result.apiErrorResponse) {
                     is APIErrorResponse.ClientErrorResponse -> {
-                        //
-                        logger.e(TAG, "APIErrorResponse.ClientErrorResponse, " +
+                        logger.w(TAG, "APIErrorResponse.ClientErrorResponse, " +
                                 "the error is ${result.apiErrorResponse.message}")
                         setErrorValue(_result.value.data, ErrorEntity.ClientError(result.apiErrorResponse.message))
                     }
@@ -89,7 +90,7 @@ abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
             }
             is NetworkResponse.Empty -> {
                 logger.w(TAG, "NetworkResponse.Empty, the result is ${result.body}")
-                setValue(ResourceEntity.Success(bodyToResult(result.body)))
+                setValue(ResourceEntity.Success(toResult(result.body)))
             }
             is NetworkResponse.NetworkError -> {
                 logger.w(TAG, "NetworkResponse.NetworkError, the error is ${result.exceptionMessage}")
@@ -97,7 +98,7 @@ abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
             }
             is NetworkResponse.Success -> {
                 logger.i(TAG, "NetworkResponse.Success, the result is ${result.body}")
-                setValue(ResourceEntity.Success(bodyToResult(result.body)))
+                setValue(ResourceEntity.Success(toResult(result.body)))
             }
             is NetworkResponse.UnknownError -> {
                 logger.e(TAG, "NetworkResponse.UnknownError, the error is ${result.throwable?.message}")
@@ -122,7 +123,7 @@ abstract class BaseOnlineRepository<DomainEntity: Any, ResultEntity: Any>(
 
     protected open fun getResultAsFlow() = _result.asStateFlow()
     protected abstract suspend fun apiCall(): NetworkResponse<DomainEntity,  APIErrorResponse>
-    protected abstract suspend fun bodyToResult(domainEntity: DomainEntity?): ResultEntity
+    protected abstract suspend fun toResult(domainEntity: DomainEntity?): ResultEntity
     protected open suspend fun onGetResultSucceed() {}
     protected open suspend fun onGetResultFailed(cause: Throwable) {}
     protected open suspend fun onGetResultCancelled() {}
